@@ -1,0 +1,54 @@
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
+duikang_che\cmsis_os2.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
+duikang_che\cmsis_os2.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+duikang_che\cmsis_os2.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+duikang_che\cmsis_os2.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+duikang_che\cmsis_os2.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+duikang_che\cmsis_os2.o: ../Core/Inc/FreeRTOSConfig.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/freertos_mpool.h
+duikang_che\cmsis_os2.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/freertos_os2.h
+duikang_che\cmsis_os2.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h
+duikang_che\cmsis_os2.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h743xx.h
+duikang_che\cmsis_os2.o: ../Drivers/CMSIS/Include/core_cm7.h
+duikang_che\cmsis_os2.o: ../Drivers/CMSIS/Include/cmsis_version.h
+duikang_che\cmsis_os2.o: ../Drivers/CMSIS/Include/mpu_armv7.h
+duikang_che\cmsis_os2.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h
+duikang_che\cmsis_os2.o: ../Core/Inc/stm32h7xx_hal_conf.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h
+duikang_che\cmsis_os2.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
+duikang_che\cmsis_os2.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio_ex.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma_ex.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c_ex.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+duikang_che\cmsis_os2.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
