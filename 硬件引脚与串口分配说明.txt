@@ -18,7 +18,7 @@ USART2
 TX  PA2  -> 雷达 RX
 RX  PA3  -> 雷达 TX
 波特率 230400
-DMA: USART2_RX -> DMA1_Stream0
+DMA: USART2_RX -> DMA1_Stream0 (CIRCULAR)
 
 
 JY901S
@@ -37,37 +37,37 @@ TX  PA0
 RX  PA1
 波特率 115200
 DMA: UART4_RX -> DMA1_Stream1
-对应：小激光 1
+对应：前向小激光测距
 
 UART5
 TX  PB13
 RX  PB12
 波特率 115200
 DMA: UART5_RX -> DMA1_Stream2
-对应：小激光 2
+对应：右向小激光测距
 
 UART7
 TX  PE8
 RX  PE7
 波特率 115200
 DMA: UART7_RX -> DMA1_Stream3
-对应：小激光 3
+对应：后向小激光测距
 
 UART8
 TX  PE1
 RX  PE0
 波特率 115200
 DMA: UART8_RX -> DMA1_Stream4
-对应：小激光 4
+对应：左向小激光测距
 
 
 当前模块对应关系
 
 USART2 -> 激光雷达 LiDAR
 USART1 -> JY901S
-UART4  -> 小激光 1
-UART5  -> 小激光 2
-UART7  -> 小激光 3
-UART8  -> 小激光 4
+UART4  -> 前向小激光测距
+UART5  -> 右向小激光测距
+UART7  -> 后向小激光测距
+UART8  -> 左向小激光测距
 PD6    -> 右侧危险检测
 PD7    -> 左侧危险检测
