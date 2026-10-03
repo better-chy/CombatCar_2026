@@ -3,22 +3,25 @@
 
 #include "main.h"
 
-#define LASER_RANGE_SENSOR_COUNT 4U
-#define LASER_RANGE_RX_BUF_LEN   23U
-#define LASER_RANGE_DMA_BUF_LEN  128U
-#define LASER_RANGE_DMA_BASE_ADDR 0x30000200U
-#define LASER_RANGE_DMA_STRIDE    0x80U
+/* 小激光硬件数量与 DMA 缓存 */
+#define LASER_RANGE_SENSOR_COUNT      4U          /* 前、右、后、左共 4 个小激光测距。 */
+#define LASER_RANGE_RX_BUF_LEN        23U         /* 小激光单帧协议长度。 */
+#define LASER_RANGE_DMA_BUF_LEN       128U        /* 每路小激光 UART DMA 缓冲长度。 */
+#define LASER_RANGE_DMA_BASE_ADDR     0x30000200U /* 四路小激光 DMA 缓冲起始地址。 */
+#define LASER_RANGE_DMA_STRIDE        0x80U       /* 每路小激光 DMA 缓冲地址间隔。 */
 
-#define LASER_RANGE_UART_RESCUE_MODE 1U
+/* 小激光救援模式 */
+#define LASER_RANGE_UART_RESCUE_MODE  0U          /* 置 1 后启动波特率探测与恢复流程。 */
 /* 四路救砖模式：
  * 0: 正常四路固定 115200 工作
  * 1: 启动时对 UART4/UART5/UART7/UART8 逐路扫描标准波特率，
  *    能识别到模块就尝试恢复到 115200，随后再进入正常 DMA 收数。 */
 
-#define LASER_FRONT 0U
-#define LASER_RIGHT 1U
-#define LASER_BACK 2U
-#define LASER_LEFT 3U
+/* 小激光方向索引 */
+#define LASER_FRONT 0U /* 前侧小激光。 */
+#define LASER_RIGHT 1U /* 右侧小激光。 */
+#define LASER_BACK  2U /* 后侧小激光。 */
+#define LASER_LEFT  3U /* 左侧小激光。 */
 
 typedef struct
 {

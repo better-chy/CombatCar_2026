@@ -51,8 +51,8 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
-  /*Configure GPIO pins : RIGHT_LIGHT_Pin LEFT_LIGHT_Pin */
-  GPIO_InitStruct.Pin = RIGHT_LIGHT_Pin|LEFT_LIGHT_Pin;
+  /*Configure GPIO pins : RIGHT_LIGHT_2_Pin LEFT_LIGHT_2_Pin RIGHT_LIGHT_Pin LEFT_LIGHT_Pin */
+  GPIO_InitStruct.Pin = RIGHT_LIGHT_2_Pin|LEFT_LIGHT_2_Pin|RIGHT_LIGHT_Pin|LEFT_LIGHT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);

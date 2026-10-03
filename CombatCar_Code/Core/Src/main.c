@@ -63,6 +63,23 @@ void MX_FREERTOS_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+void debug_mode(void)
+{
+  Motor_SetSpeeds(100, 0);
+  HAL_Delay(1000);
+  Motor_SetSpeeds(-100, 0);
+  HAL_Delay(1000);
+  Motor_SetSpeeds(0, 100);
+  HAL_Delay(1000);
+  Motor_SetSpeeds(0, -100);
+
+  while (1)
+  {
+    /* code */
+  }
+
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -114,8 +131,10 @@ int main(void)
   MX_UART8_Init();
   MX_USART1_UART_Init();
   MX_USART3_UART_Init();
+  MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
   Motor_Init();
+  // debug_mode();
 
   /* USER CODE END 2 */
 

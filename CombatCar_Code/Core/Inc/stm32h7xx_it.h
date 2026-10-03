@@ -27,11 +27,24 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdint.h>
 
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+typedef struct
+{
+  uint32_t cfsr;
+  uint32_t hfsr;
+  uint32_t dfsr;
+  uint32_t afsr;
+  uint32_t mmfar;
+  uint32_t bfar;
+  uint32_t shcsr;
+  uint32_t icsr;
+  uint32_t ipsr;
+} FaultDebugInfo;
 
 /* USER CODE END ET */
 
@@ -59,13 +72,19 @@ void DMA1_Stream3_IRQHandler(void);
 void DMA1_Stream4_IRQHandler(void);
 void DMA1_Stream5_IRQHandler(void);
 void DMA1_Stream6_IRQHandler(void);
+void TIM2_IRQHandler(void);
+void USART1_IRQHandler(void);
+void USART2_IRQHandler(void);
+void USART3_IRQHandler(void);
+void DMA1_Stream7_IRQHandler(void);
 void UART4_IRQHandler(void);
 void UART5_IRQHandler(void);
+void DMA2_Stream0_IRQHandler(void);
+void USART6_IRQHandler(void);
 void UART7_IRQHandler(void);
 void UART8_IRQHandler(void);
-void TIM2_IRQHandler(void);
-void USART2_IRQHandler(void);
 /* USER CODE BEGIN EFP */
+extern volatile FaultDebugInfo g_fault_debug_info;
 
 /* USER CODE END EFP */
 

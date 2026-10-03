@@ -80,6 +80,19 @@ virtualFolder:
         - path: ../User/JY901S.h
         - path: ../User/Vision.c
         - path: ../User/Vision.h
+        - path: ../User/Track_Enemy.c
+        - path: ../User/Track_Enemy.h
+        - path: ../User/PID.c
+        - path: ../User/PID.h
+        - path: ../User/Task_Stage.c
+        - path: ../User/Task_Stage.h
+        - path: ../User/StageModel.c
+        - path: ../User/StageModel.h
+        - path: ../User/DangerModel.c
+        - path: ../User/DangerModel.h
+        - path: ../User/Task_TrainLog.c
+        - path: ../User/Task_TrainLog.h
+        - path: ../User/CombatCar_TuneConfig.h
       folders: []
     - name: Middlewares
       files: []

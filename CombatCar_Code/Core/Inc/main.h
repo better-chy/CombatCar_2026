@@ -46,7 +46,7 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+void debug_mode();
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
@@ -65,6 +65,10 @@ void Error_Handler(void);
 #define MOTOR2_PWM1_GPIO_Port GPIOE
 #define MOTOR2_PWM2_Pin GPIO_PIN_14
 #define MOTOR2_PWM2_GPIO_Port GPIOE
+#define RIGHT_LIGHT_2_Pin GPIO_PIN_4
+#define RIGHT_LIGHT_2_GPIO_Port GPIOD
+#define LEFT_LIGHT_2_Pin GPIO_PIN_5
+#define LEFT_LIGHT_2_GPIO_Port GPIOD
 #define RIGHT_LIGHT_Pin GPIO_PIN_6
 #define RIGHT_LIGHT_GPIO_Port GPIOD
 #define LEFT_LIGHT_Pin GPIO_PIN_7

@@ -10,7 +10,7 @@ typedef enum
     JY901S_BUF_READY,
     JY901S_BUF_READING
 } JY901S_BufferState;
-//Ë«»º³å×´Ì¬
+//åŒç¼“å†²çŠ¶æ€
 
 typedef struct
 {
@@ -19,7 +19,7 @@ typedef struct
     volatile uint8_t pending_buf[JY901S_PENDING_SLOTS][JY901S_RX_BUF_LEN];
     volatile uint16_t pending_len[JY901S_PENDING_SLOTS];
     volatile uint8_t pending_state[JY901S_PENDING_SLOTS];
-    volatile uint32_t pending_seq[JY901S_PENDING_SLOTS];   //Ê±¼äË³Ğò±àºÅ
+    volatile uint32_t pending_seq[JY901S_PENDING_SLOTS];   //æ—¶é—´é¡ºåºç¼–å·
     volatile uint32_t seq_counter;
     uint8_t frame[JY901S_FRAME_LEN];
     uint8_t frame_idx;
@@ -41,9 +41,9 @@ static void JY901S_ParseFrame(const uint8_t *frame);
 
 void JY901S_Init(UART_HandleTypeDef *huart)
 {
-    memset(&s_jy901, 0, sizeof(s_jy901));    //×´Ì¬ÇåÁã
+    memset(&s_jy901, 0, sizeof(s_jy901));    //çŠ¶æ€æ¸…é›¶
     s_jy901.huart = huart;
-    s_jy901.rx_dma_buf = (uint8_t *)JY901S_DMA_ADDR;   //ĞŞ¸ÄdmaÄÚ´æµØÖ·
+    s_jy901.rx_dma_buf = (uint8_t *)JY901S_DMA_ADDR;   //ä¿®æ”¹dmaå†…å­˜åœ°å€
     JY901S_StartRx(&s_jy901);
 }
 
@@ -70,13 +70,13 @@ void JY901S_HandleRxEventFromISR(UART_HandleTypeDef *huart, uint16_t size)
     int32_t slot;
     UBaseType_t uxSavedInterruptStatus;
 
-    //È·ÈÏÊÇuart1µÄ´®¿Ú
+    //ç¡®è®¤æ˜¯uart1çš„ä¸²å£
     if (huart != s_jy901.huart || s_jy901.huart == NULL)
     {
         return;
     }
 
-    //·ÀÖ¹Ô½½ç
+    //é˜²æ­¢è¶Šç•Œ
     if (size > JY901S_RX_BUF_LEN)
     {
         size = JY901S_RX_BUF_LEN;
@@ -84,11 +84,10 @@ void JY901S_HandleRxEventFromISR(UART_HandleTypeDef *huart, uint16_t size)
 
     if (size == 0U)
     {
-        JY901S_StartRx(&s_jy901);
         return;
     }
 
-    //Ë«»º³å£¬ÏÈÕÒ¿ÕÏĞ²Û£¬Èç¹ûÃ»ÓĞ£¬¸²¸Ç×î¾ÉµÄready²Û
+    //åŒç¼“å†²ï¼Œå…ˆæ‰¾ç©ºé—²æ§½ï¼Œå¦‚æœæ²¡æœ‰ï¼Œè¦†ç›–æœ€æ—§çš„readyæ§½
     uxSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();
     slot = JY901S_GetFreeSlot(&s_jy901);
     if (slot < 0)
@@ -96,7 +95,7 @@ void JY901S_HandleRxEventFromISR(UART_HandleTypeDef *huart, uint16_t size)
         slot = JY901S_GetOldestReadySlot(&s_jy901);
     }
 
-    //°ÑdmaÊı¾İ°áµ½pendingbuf
+    //æŠŠdmaæ•°æ®æ¬åˆ°pendingbuf
     if (slot >= 0)
     {
         memcpy((void *)s_jy901.pending_buf[slot], s_jy901.rx_dma_buf, size);
@@ -105,8 +104,6 @@ void JY901S_HandleRxEventFromISR(UART_HandleTypeDef *huart, uint16_t size)
         s_jy901.pending_state[slot] = JY901S_BUF_READY;
     }
     taskEXIT_CRITICAL_FROM_ISR(uxSavedInterruptStatus);
-
-    JY901S_StartRx(&s_jy901);
 }
 
 void JY901S_HandleError(UART_HandleTypeDef *huart)
@@ -169,8 +166,8 @@ static void JY901S_StartRx(JY901S_Context *ctx)
 
     status = HAL_UART_Receive_DMA(ctx->huart, ctx->rx_dma_buf, JY901S_RX_BUF_LEN);
 
-
-    //¹Ø±Õ°ë´«ÊäÖĞ¶Ï
+    /* USART1_RX is configured as DMA_CIRCULAR, so DMA should be started once
+       and only restarted from the explicit error recovery path. */
     if (status == HAL_OK && ctx->huart->hdmarx != NULL)
     {
         __HAL_DMA_DISABLE_IT(ctx->huart->hdmarx, DMA_IT_HT);

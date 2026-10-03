@@ -6,21 +6,23 @@
 #include "task.h"
 #include "usart.h"
 
-#define LASER_RANGE_UART_TIMEOUT_MS       50U
-#define LASER_RANGE_STARTUP_SETTLE_MS     3000U
-#define LASER_RANGE_RETRY_INTERVAL_MS     500U
-#define LASER_RANGE_STREAM_STALE_MS       1000U
+/* 正常接收与断流恢复 */
+#define LASER_RANGE_UART_TIMEOUT_MS          50U   /* 阻塞式探测/救援串口读写的基础超时。 */
+#define LASER_RANGE_STARTUP_SETTLE_MS      3000U   /* 上电后等待小激光模块稳定的时间。 */
+#define LASER_RANGE_RETRY_INTERVAL_MS       500U   /* 断流后重发开流命令的间隔。 */
+#define LASER_RANGE_STREAM_STALE_MS        1000U   /* 超过该时间没有新帧，认为该路小激光断流。 */
 /* 超过 LASER_RANGE_STREAM_STALE_MS 没有新帧，就认为该路断流。
  * 断流后每隔 LASER_RANGE_RETRY_INTERVAL_MS 补发一次 0x01 开流命令。 */
 
 #if LASER_RANGE_UART_RESCUE_MODE
-#define LASER_RANGE_PROBE_RX_BUF_LEN      64U
-#define LASER_RANGE_RESCUE_ACCUM_BUF_LEN  128U
-#define LASER_RANGE_RESCUE_TARGET_BAUD    115200UL
-#define LASER_RANGE_RESCUE_FIRST_BYTE_MS  40U
-#define LASER_RANGE_RESCUE_NEXT_BYTE_MS   5U
-#define LASER_RANGE_RESCUE_CMD_GAP_MS     20U
-#define LASER_RANGE_RESCUE_TRIES_PER_BAUD 2U
+/* 小激光 UART 救援模式 */
+#define LASER_RANGE_PROBE_RX_BUF_LEN         64U   /* 扫描波特率时单次接收缓冲长度。 */
+#define LASER_RANGE_RESCUE_ACCUM_BUF_LEN    128U   /* 救援模式累积接收缓冲长度。 */
+#define LASER_RANGE_RESCUE_TARGET_BAUD   115200UL  /* 救援成功后统一恢复到的目标波特率。 */
+#define LASER_RANGE_RESCUE_FIRST_BYTE_MS     40U   /* 等待救援响应首字节的时间。 */
+#define LASER_RANGE_RESCUE_NEXT_BYTE_MS       5U   /* 救援响应后续字节间隔超时。 */
+#define LASER_RANGE_RESCUE_CMD_GAP_MS        20U   /* 救援命令之间的间隔。 */
+#define LASER_RANGE_RESCUE_TRIES_PER_BAUD     2U   /* 每个候选波特率尝试次数。 */
 #endif
 
 typedef struct
@@ -298,7 +300,11 @@ static void LaserRange_StartRx(LaserRange_Context *ctx)
     LaserRange_ResetParser(ctx);
     memset(ctx->rx_dma_buf, 0, LASER_RANGE_DMA_BUF_LEN);
 
-    status = HAL_UART_Receive_DMA(ctx->huart, ctx->rx_dma_buf, LASER_RANGE_DMA_BUF_LEN);
+    status = HAL_UARTEx_ReceiveToIdle_DMA(ctx->huart, ctx->rx_dma_buf, LASER_RANGE_DMA_BUF_LEN);
+    if (status != HAL_OK)
+    {
+        status = HAL_UART_Receive_DMA(ctx->huart, ctx->rx_dma_buf, LASER_RANGE_DMA_BUF_LEN);
+    }
     if (index >= 0)
     {
         g_laser_debug[index].last_start_rx_status = status;
@@ -311,8 +317,6 @@ static void LaserRange_StartRx(LaserRange_Context *ctx)
     {
         __HAL_DMA_DISABLE_IT(ctx->huart->hdmarx, DMA_IT_HT);
         __HAL_DMA_DISABLE_IT(ctx->huart->hdmarx, DMA_IT_TC);
-        __HAL_UART_CLEAR_IDLEFLAG(ctx->huart);
-        __HAL_UART_ENABLE_IT(ctx->huart, UART_IT_IDLE);
     }
 }
 
